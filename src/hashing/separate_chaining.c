@@ -1,6 +1,6 @@
+#include "data_structures.h"
 #include "hash.h"
 #include "safe_input.h"
-#include "data_structures.h"
 #include <stdio.h>
 #include <string.h>
 
