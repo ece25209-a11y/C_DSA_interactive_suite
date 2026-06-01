@@ -1,9 +1,5 @@
 #include "advanced_sorting.h"
 #include "data_structures.h"
-/*
-data_structures.h uses the following:
-Arrays, Binary Search Tree, Circular Queue, Doubly Linked List, Singly Linked List
-*/
 #include "expression.h"
 #include "graph_traversals.h"
 #include "hash.h"

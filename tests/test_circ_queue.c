@@ -1,4 +1,4 @@
-#include "data_structures.h" // Uses Circular Queue
+#include "data_structures.h"
 #include <assert.h>
 #include <stdio.h>
 

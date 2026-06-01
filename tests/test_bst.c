@@ -1,4 +1,4 @@
-#include "data_structures.h" // Uses Binary Search Tree
+#include "data_structures.h"
 #include <assert.h>
 #include <stdio.h>
 

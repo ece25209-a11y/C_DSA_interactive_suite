@@ -1,9 +1,4 @@
 #include "data_structures.h"
-/*
-data_structures.h uses the following:
-Arrays, Binary Search Tree, Circular Queue, Doubly Linked List, Singly Linked List, Threaded Binary
-Tree
-*/
 #include "safe_input.h"
 #include <stdio.h>
 
