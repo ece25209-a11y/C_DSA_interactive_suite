@@ -211,7 +211,7 @@ void priority_queue_demo(void)
                        extracted_element);
                 display_heap(pq);
             }
-            else
+            else if (pq_choice == 3)
             {
                 int peek_element;
                 bool peek_element_status = peek_pq(pq, &peek_element);
