@@ -22,41 +22,13 @@ The codebase is structured as a reusable **DSA core**, with an interactive, cons
 
 ---
 
-## 🔮 Future Work
+## Future Work
 - Minimum Spanning Tree (MST) module with Kruskal’s and Prim’s algorithms
 - Bellman-Ford algorithm for graphs with negative weights
 - A* Search algorithm with interactive demo
 
 ---
 
-## Demos: 
-
-### Interactive Sorting Demos
-* Step-by-step visualization for Bubble, Selection, and Insertion Sort
-* Advanced demos for Quick, Merge, Heap, and Radix Sort
-* Shows intermediate array states for better learning
-
-## Additional Demos
-
-### AVL Tree (step-by-step)
-* Interactive visualization of insertions and deletions
-* Shows rotations (LL, RR, LR, RL) to maintain balance
-* Demonstrates guaranteed O(log n) operations
-
-### Radix Sort (LSD, step-by-step)
-* Digit-by-digit sorting demo
-* Displays intermediate array states after each pass
-* Highlights efficiency compared to O(n²) sorting algorithms
-
-### Double-Ended Queue (Deque, step-by-step)
-* Interactive demo of insertion and deletion from both ends
-* Shows wrap-around indexing in circular array implementation
-* Includes overflow/underflow handling and memory cleanup
-
-### A* Search Algorithm (interactive demo)
-* Implements A* pathfinding with Min-Priority Queue
-* Includes Closed Set handling and tie-breaking
-* Interactive re-run capability for experimenting with different graph inputs
 
 ## Infix to Postfix and Postfix evaluation (step by step)
 
@@ -171,6 +143,7 @@ If any test fails or Valgrind detects a memory error, the CI job fails automatic
 ### Data Structures
 - Singly Linked List (SLL)
 - Doubly Linked List (DLL)
+- Singly Circular Linked List (SCLL)
 - Simple Queue (Linear Queue, array-based)
 - Circular Queue (array-based)
 - Double-Ended Queue (Deque) (array-based)
@@ -222,6 +195,7 @@ Both BFS and DFS are implemented **iteratively** (no recursion).
 -Quadratic Probing
 
 Linear Probing uses modulo arithmetic to wrap-around the hash table/array when last index is full, optimizing resources and using the full array. 
+
 Separate Chaining uses sll API from the 'data_structures' folder
 
 Double Hashing uses a second hash function to calculate probe steps, reducing clustering compared to linear probing.
@@ -259,7 +233,6 @@ Quadratic Probing resolves collisions by using quadratic increments (i²) to red
 ### Threaded Binary Tree (TBT)
 * Binary tree with threads replacing NULL pointers
 * Enables efficient inorder traversal without recursion or stack
-* Traversal runs in O(n) time with reduced overhead compared to standard BST traversal
 * Search, insertion, and deletion remain O(h), similar to BST
 
 ---
@@ -296,6 +269,7 @@ Quadratic Probing resolves collisions by using quadratic increments (i²) to red
 ### Threaded Binary Tree (TBT)
 * Binary tree with threads replacing NULL pointers
 * Enables efficient inorder traversal without recursion or stack
+* Traversal runs in O(n) time with reduced overhead compared to standard BST traversal
 * Useful for educational comparison with BST and AVL Tree
 
 ### Priority Queue
