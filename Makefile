@@ -67,6 +67,7 @@ BST_TEST_SRC = \
 SEARCH_TEST_SRC = \
 	src/searching_algorithms/linear_search.c \
 	src/utils/safe_input_int.c \
+	src/utils/history_logger.c \
 	src/searching_algorithms/binary_search.c \
 	src/sorting_algorithms_n2/selection_sort.c \
 	src/data_structures/array.c \
@@ -75,6 +76,7 @@ SEARCH_TEST_SRC = \
 HASH_FUNCTION_TEST_SRC = \
 	src/hashing/linear_probing.c \
 	src/utils/safe_input_int.c \
+	src/utils/history_logger.c \
 	src/data_structures/array.c \
 	src/searching_algorithms/linear_search.c \
 	tests/test_hash_function.c
@@ -142,12 +144,17 @@ GREEDY_BFS_TEST_SRC = \
 	src/utils/safe_input_int.c \
 	tests/test_greedy_best_first_search.c
 
+HISTORY_LOGGER_TEST_SRC = \
+	src/utils/history_logger.c \
+	tests/test_history_logger.c
+
 SORTING_N2_TEST_SRC = \
 	src/sorting_algorithms_n2/bubble_sort.c \
 	src/sorting_algorithms_n2/insertion_sort.c \
 	src/sorting_algorithms_n2/selection_sort.c \
 	src/data_structures/array.c \
 	src/utils/safe_input_int.c \
+	src/utils/history_logger.c \
 	tests/test_sorting_n2.c
 
 ADVANCED_SORTING_TEST_SRC = \
@@ -158,8 +165,8 @@ ADVANCED_SORTING_TEST_SRC = \
 	src/data_structures/priority_queue.c \
 	src/data_structures/array.c \
 	src/utils/safe_input_int.c \
+	src/utils/history_logger.c \
 	tests/test_advanced_sorting.c
-
 
 test_tbt:
 	$(CC) $(CFLAGS) $(TBT_TEST_SRC) -o test_tbt$(EXE)
@@ -222,12 +229,47 @@ test_avl:
 	$(CC) $(CFLAGS) $(AVL_TEST_SRC) -o test_avl$(EXE)
 	./test_avl$(EXE)
 
-
 test_greedy_bfs:
 	$(CC) $(CFLAGS) $(GREEDY_BFS_TEST_SRC) -o test_greedy_bfs$(EXE)
 	./test_greedy_bfs$(EXE)
 
+test_history_logger:
+	$(CC) $(CFLAGS) $(HISTORY_LOGGER_TEST_SRC) -o test_history_logger$(EXE)
+	./test_history_logger$(EXE)
 
+TEST_BINS = test_circ_queue test_bst test_search test_hash_func \
+            test_sll test_dll test_array test_stack test_tbt \
+            test_priority_queue test_scll test_simple_queue \
+            test_deque test_astar test_avl \
+            test_greedy_bfs test_sorting_n2 test_advanced_sorting \
+            test_history_logger
+
+test: $(TEST_BINS)
+
+.PHONY: $(TARGET) $(TEST_BINS)
+
+
+
+# ---- sorting algorithm unit tests (issue #92) ----
+SORTING_N2_TEST_SRC = \
+	src/sorting_algorithms_n2/bubble_sort.c \
+	src/sorting_algorithms_n2/insertion_sort.c \
+	src/sorting_algorithms_n2/selection_sort.c \
+	src/data_structures/array.c \
+	src/utils/safe_input_int.c \
+	src/utils/history_logger.c \
+	tests/test_sorting_n2.c
+
+ADVANCED_SORTING_TEST_SRC = \
+	src/advanced_sorting_algorithms/quick_sort.c \
+	src/advanced_sorting_algorithms/merge_sort.c \
+	src/advanced_sorting_algorithms/heap_sort.c \
+	src/advanced_sorting_algorithms/radix_sort.c \
+	src/data_structures/priority_queue.c \
+	src/data_structures/array.c \
+	src/utils/safe_input_int.c \
+	src/utils/history_logger.c \
+	tests/test_advanced_sorting.c
 test_sorting_n2:
 	$(CC) $(CFLAGS) $(SORTING_N2_TEST_SRC) -o test_sorting_n2$(EXE)
 	./test_sorting_n2$(EXE)
