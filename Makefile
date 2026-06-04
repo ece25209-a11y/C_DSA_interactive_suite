@@ -294,7 +294,6 @@ TEST_BINS = test_circ_queue test_bst test_search test_hash_func \
             test_priority_queue test_scll test_simple_queue \
             test_deque test_astar test_avl \
             test_greedy_bfs test_sorting_n2 test_advanced_sorting \
-            test_history_logger test_trie
             test_history_logger test_shell_sort test_trie
 
 test: $(TEST_BINS)
