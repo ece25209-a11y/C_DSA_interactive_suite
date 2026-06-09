@@ -1,29 +1,35 @@
 #include "safe_input.h"
-#include <error_correction_algorithms.h>
+#include "error_correction_algorithms.h"
 #include <stdio.h>
 
-/*New functions come here*/
+/* New functions come here */
 
 void error_correction_algorithms_demo(void)
 {
     while (1)
     {
         int ECA_choice;
-        /*Change the prompt and the range accordingly when new functions get added*/
-        int ECA_status = safe_input_int(&ECA_choice,
-                                        "\nEnter 1 for checksum (sender)"
-                                        "\nEnter 2 for checksum (receiver)"
-                                        "\nEnter 3 for CRC"
-                                        "\nEnter 4 for LRC"
-                                        "\nEnter 5 for VRC"
-                                        "\nEnter 6 for Hamming Code (sender)"
-                                        "\nEnter 7 for Hamming Code (receiver)"
-                                        "\nEnter -1 to exit: ",
-                                        1, 7);
+
+        /* Change the prompt and the range accordingly when new functions get added */
+        int ECA_status = safe_input_int(
+            &ECA_choice,
+            "\nEnter 1 for Checksum (Sender)"
+            "\nEnter 2 for Checksum (Receiver verification)"
+            "\nEnter 3 for CRC (Sender)"
+            "\nEnter 4 for CRC (Receiver verification)"
+            "\nEnter 5 for LRC (Sender)"
+            "\nEnter 6 for LRC (Receiver verification)"
+            "\nEnter 7 for Parity Bit"
+            "\nEnter 8 for VRC (Sender)"
+            "\nEnter 9 for VRC (Receiver verification)"
+            "\nEnter 10 for Hamming Code (Sender)"
+            "\nEnter 11 for Hamming Code (Receiver verification)"
+            "\nEnter -1 to exit: ",
+            1, 11);
 
         if (ECA_status == INPUT_EXIT_SIGNAL)
         {
-            printf("Exiting Error Correction Algorithm Demo....");
+            printf("Exiting Error Correction Algorithm Demo...\n");
             return;
         }
 
@@ -32,9 +38,6 @@ void error_correction_algorithms_demo(void)
 
         switch (ECA_choice)
         {
-
-                /*Newly implemented functions will be called here*/
-
             case 1:
                 checksum_demo();
                 break;
@@ -48,23 +51,39 @@ void error_correction_algorithms_demo(void)
                 break;
 
             case 4:
-                lrc_demo();
+                crc_receiver_demo();
                 break;
 
             case 5:
-                vrc_demo();
+                lrc_demo();
                 break;
 
             case 6:
-                hamming_demo();
+                lrc_receiver_demo();
                 break;
 
             case 7:
+                parity_bit_demo();
+                break;
+
+            case 8:
+                vrc_demo();
+                break;
+
+            case 9:
+                vrc_receiver_demo();
+                break;
+
+            case 10:
+                hamming_demo();
+                break;
+
+            case 11:
                 hamming_receiver_demo();
                 break;
 
             default:
-                printf("Wrong choice entered");
+                printf("Wrong choice entered\n");
                 break;
         }
     }
