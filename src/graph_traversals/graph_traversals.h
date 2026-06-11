@@ -41,8 +41,12 @@ typedef struct
 typedef struct
 {
     int size;
-    PQ_graph_node heap[HEAP_CAPACITY];
+    int capacity;
+    PQ_graph_node* heap;
 } PQ_graph;
+
+void init_pq_graph(PQ_graph* pq, int initial_capacity);
+void free_pq_graph(PQ_graph* pq);
 int insert_pq_graph(PQ_graph* pq, int vertex, int distance);
 bool extractTop_pq_graph(PQ_graph* pq, PQ_graph_node* result);
 
@@ -76,5 +80,13 @@ void greedy_best_first_search_demo(void);
 
 // ------------------For Bellman-ford-----------------------
 void bellman_ford_demo(void);
+
+// ------------------For MST (Kruskal's)-----------------------
+int kruskal_mst(weightedGraph* graph);
+void kruskal_demo(void);
+
+// ------------------For MST (Prim's)-----------------------
+int prim_mst(weightedGraph* graph, int start_node);
+void prim_demo(void);
 
 #endif

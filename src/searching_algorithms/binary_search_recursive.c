@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <time.h>
 
-int binary_search(int arr[], int target, int length_of_array);
+int binary_search_recursive(int arr[], int target, int low, int high);
 
-void binary_search_demo(void)
+void binary_search_recursive_demo(void)
 {
 
     while (1)
@@ -17,14 +17,14 @@ void binary_search_demo(void)
         int target;
         int binary_search_status;
 
-        printf("\nBinary search demo :- \n");
+        printf("\nRecursive binary search demo :- \n");
         binary_search_status = safe_input_int(
             &length_of_array, "\nenter length of array, (between 1 and 100), enter '-1' to exit:- ",
             1, 100);
 
         if (binary_search_status == INPUT_EXIT_SIGNAL)
         {
-            printf("\nExiting binary search demo....\n");
+            printf("\nExiting recursive binary search demo....\n");
             return;
         }
 
@@ -46,7 +46,7 @@ void binary_search_demo(void)
 
             if (element_status == INPUT_EXIT_SIGNAL)
             {
-                printf("\nExiting linear search demo....\n");
+                printf("\nExiting recursive binary search demo....\n");
                 return;
             }
 
@@ -68,7 +68,7 @@ void binary_search_demo(void)
 
             if (target_status == INPUT_EXIT_SIGNAL)
             {
-                printf("\nExiting binary search demo....\n");
+                printf("\nExiting recursive binary search demo....\n");
                 return;
             }
 
@@ -83,52 +83,43 @@ void binary_search_demo(void)
         selection_sort(arr, length_of_array);
 
         start_t = clock();
-        int res = binary_search(arr, target, length_of_array);
+        int res = binary_search_recursive(arr, target, 0, length_of_array - 1);
         end_t = clock();
         total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
         printf("\nelement found at index %d.", res);
         if (res == -1)
             printf("\nelement not found in the given array");
 
-        printf("\ntotal CPU time taken for binary search:- %f seconds", total_t);
+        printf("\ntotal CPU time taken for recursive binary search:- %f seconds", total_t);
         printf("\n(most probably execution time would be lesser than clock resolution, resulting "
                "in 0.00)");
-        add_to_history("Binary Search", length_of_array, total_t);
+        add_to_history("Recursive Binary Search", length_of_array, total_t);
     }
 }
 
-int binary_search(int arr[], int target, int length_of_array)
+// recursively searches arr[low..high] for target, returning its index or -1 if absent.
+// low and high carry the shrinking search window, so the demo starts it with 0 and length - 1.
+int binary_search_recursive(int arr[], int target, int low, int high)
 {
-    int low = 0;
-    int high = length_of_array - 1;
-    int mid = 0;
-
-    if (length_of_array == 1)
+    if (low > high) // base case: empty window, target is not present
     {
-        if (arr[0] == target)
-        {
-            return 0;
-        }
         return -1;
     }
 
-    while (low <= high)
-    { // main loop which performs the binary search algorithm
-        mid = low + (high - low) / 2;
-        // printf("DEBUG: low=%d, mid=%d, high=%d, arr[mid]=%d\n", low, mid, high, arr[mid]);
-        if (arr[mid] == target)
-        {
-            return mid;
-        }
-        else if (arr[mid] < target)
-        {
-            low = mid + 1;
-        }
-        else
-        {
-            high = mid - 1;
-        }
-    }
+    int mid = low + (high - low) / 2;
 
-    return -1;
+    if (arr[mid] == target)
+    {
+        return mid;
+    }
+    else if (arr[mid] < target)
+    {
+        // target is greater, search the right half
+        return binary_search_recursive(arr, target, mid + 1, high);
+    }
+    else
+    {
+        // target is smaller, search the left half
+        return binary_search_recursive(arr, target, low, mid - 1);
+    }
 }

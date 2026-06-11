@@ -16,7 +16,8 @@ CFLAGS = -Wall -Wextra -Werror -std=c11 -g \
 	-Isrc/utils \
 	-Isrc/trees \
 	-Isrc/error_correction_algorithms \
-	-Isrc/job_scheduling
+	-Isrc/job_scheduling \
+	-Isrc/dynamic_programming
 
 SRC_DIRS = \
 	src/data_structures \
@@ -29,7 +30,8 @@ SRC_DIRS = \
 	src/utils \
 	src/trees \
 	src/error_correction_algorithms \
-	src/job_scheduling
+	src/job_scheduling \
+	src/dynamic_programming
 
 SRCS = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
@@ -92,11 +94,24 @@ TEST_BINS = test_circ_queue test_bst test_search test_hash_func \
             test_priority_queue test_scll test_simple_queue \
             test_deque test_astar test_avl \
             test_greedy_bfs test_sorting_n2 test_advanced_sorting \
-            test_history_logger test_shell_sort test_trie test_btree test_bplus_tree test_parity_bit
+            test_history_logger test_shell_sort test_trie test_btree test_bplus_tree test_parity_bit \
+            test_prim test_kruskal
 
-		
 test: $(TEST_BINS)
 
+test_kruskal: $(TEST_DIR)/test_kruskal$(EXE)
+	$(TEST_DIR)/test_kruskal$(EXE)
+
+$(TEST_DIR)/test_kruskal$(EXE): $(filter-out $(OBJ_DIR)/src/data_structures/main.o, $(OBJS)) tests/test_kruskal.c
+	@$(call MKDIR_P,$(TEST_DIR))
+	$(CC) $(CFLAGS) $^ -o $@
+
+test_prim: $(TEST_DIR)/test_prim$(EXE)
+	$(TEST_DIR)/test_prim$(EXE)
+
+$(TEST_DIR)/test_prim$(EXE): $(filter-out $(OBJ_DIR)/src/data_structures/main.o, $(OBJS)) tests/test_prim.c
+	@$(call MKDIR_P,$(TEST_DIR))
+	$(CC) $(CFLAGS) $^ -o $@
 
 test_tbt: $(TEST_DIR)/test_tbt$(EXE)
 	$(TEST_DIR)/test_tbt$(EXE)
@@ -192,7 +207,7 @@ $(TEST_DIR)/test_deque$(EXE): $(OBJ_DIR)/src/data_structures/deque.o $(OBJ_DIR)/
 test_astar: $(TEST_DIR)/test_astar$(EXE)
 	$(TEST_DIR)/test_astar$(EXE)
 
-$(TEST_DIR)/test_astar$(EXE): $(OBJ_DIR)/src/graph_traversals/astar.o $(OBJ_DIR)/src/graph_traversals/dijkstra.o $(OBJ_DIR)/src/utils/graph_io.o $(OBJ_DIR)/src/graph_traversals/bfs.o $(OBJ_DIR)/src/data_structures/circular_queue.o $(OBJ_DIR)/src/data_structures/sll.o $(OBJ_DIR)/src/utils/safe_input_int.o tests/test_astar.c
+$(TEST_DIR)/test_astar$(EXE): $(OBJ_DIR)/src/graph_traversals/astar.o $(OBJ_DIR)/src/graph_traversals/dijkstra.o $(OBJ_DIR)/src/utils/graph_io.o $(OBJ_DIR)/src/graph_traversals/bfs.o $(OBJ_DIR)/src/data_structures/circular_queue.o $(OBJ_DIR)/src/data_structures/sll.o $(OBJ_DIR)/src/utils/safe_input_int.o $(OBJ_DIR)/src/utils/history_logger.o tests/test_astar.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@
 
@@ -220,7 +235,7 @@ $(TEST_DIR)/test_btree$(EXE): $(OBJ_DIR)/src/trees/btree.o $(OBJ_DIR)/src/utils/
 test_greedy_bfs: $(TEST_DIR)/test_greedy_bfs$(EXE)
 	$(TEST_DIR)/test_greedy_bfs$(EXE)
 
-$(TEST_DIR)/test_greedy_bfs$(EXE): $(OBJ_DIR)/src/graph_traversals/greedy_best_first_search.o $(OBJ_DIR)/src/graph_traversals/dijkstra.o $(OBJ_DIR)/src/utils/graph_io.o $(OBJ_DIR)/src/graph_traversals/bfs.o $(OBJ_DIR)/src/data_structures/circular_queue.o $(OBJ_DIR)/src/data_structures/sll.o $(OBJ_DIR)/src/utils/safe_input_int.o tests/test_greedy_best_first_search.c
+$(TEST_DIR)/test_greedy_bfs$(EXE): $(OBJ_DIR)/src/graph_traversals/greedy_best_first_search.o $(OBJ_DIR)/src/graph_traversals/dijkstra.o $(OBJ_DIR)/src/utils/graph_io.o $(OBJ_DIR)/src/graph_traversals/bfs.o $(OBJ_DIR)/src/data_structures/circular_queue.o $(OBJ_DIR)/src/data_structures/sll.o $(OBJ_DIR)/src/utils/safe_input_int.o $(OBJ_DIR)/src/utils/history_logger.o tests/test_greedy_best_first_search.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@
 
@@ -252,13 +267,6 @@ $(TEST_DIR)/test_advanced_sorting$(EXE): $(OBJ_DIR)/src/advanced_sorting_algorit
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@
 
-TEST_BINS = test_circ_queue test_bst test_search test_hash_func \
-            test_sll test_dll test_array test_stack test_tbt \
-            test_priority_queue test_scll test_simple_queue \
-            test_deque test_astar test_avl \
-            test_greedy_bfs test_sorting_n2 test_advanced_sorting \
-            test_history_logger test_shell_sort test_trie test_btree test_bplus_tree test_parity_bit
-
 test_bplus_tree: $(TEST_DIR)/test_bplus_tree$(EXE)
 	$(TEST_DIR)/test_bplus_tree$(EXE)
 
@@ -267,15 +275,10 @@ $(TEST_DIR)/test_bplus_tree$(EXE): $(OBJ_DIR)/src/trees/bplus_tree.o $(OBJ_DIR)/
 	$(CC) $(CFLAGS) $^ -o $@
 
 test_parity_bit: $(TEST_DIR)/test_parity_bit$(EXE)
+	$(TEST_DIR)/test_parity_bit$(EXE)
 
-$(TEST_DIR)/test_parity_bit$(EXE): \
-	$(OBJ_DIR)/src/error_correction_algorithms/parity_bit.o \
-	$(OBJ_DIR)/src/error_correction_algorithms/checksum.o \
-	$(OBJ_DIR)/src/utils/safe_input_int.o \
-	tests/test_parity_bit.c
+$(TEST_DIR)/test_parity_bit$(EXE): $(OBJ_DIR)/src/error_correction_algorithms/parity_bit.o $(OBJ_DIR)/src/error_correction_algorithms/checksum.o $(OBJ_DIR)/src/utils/safe_input_int.o $(OBJ_DIR)/src/utils/history_logger.o tests/test_parity_bit.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@
-
-test: $(TEST_BINS)
 
 .PHONY: run fmt clean valgrind
