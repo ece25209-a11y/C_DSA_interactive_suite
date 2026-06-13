@@ -330,12 +330,12 @@ void print_weightedGraph(const weightedGraph* graph)
         printf("Vertex %d -> ", i);
 
         Edge* edge = graph->array[i];
-        if(edge == NULL)
+        if (edge == NULL)
         {
             printf("\n");
             continue;
         }
-        while(edge->next != NULL)
+        while (edge->next != NULL)
         {
             printf("%d(%d), ", edge->destination, edge->weight);
             edge = edge->next;

@@ -70,7 +70,7 @@ static bool solve_n_queens_util(int N, char board[MAX_N][MAX_N], int col)
                 return true;
 
             // If placing queen here doesn't lead to a solution, backtrack
-            board[i][col] = '.'; 
+            board[i][col] = '.';
             print_board(N, board);
         }
     }
@@ -84,7 +84,8 @@ void n_queens_demo(void)
     while (1)
     {
         int N;
-        int status = safe_input_int(&N, "\nEnter the board size N (between 4 and 8), or -1 to exit: ", 4, MAX_N);
+        int status = safe_input_int(
+            &N, "\nEnter the board size N (between 4 and 8), or -1 to exit: ", 4, MAX_N);
         if (status == INPUT_EXIT_SIGNAL)
         {
             printf("\nExiting N-Queens Solver...\n");

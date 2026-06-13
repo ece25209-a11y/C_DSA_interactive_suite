@@ -53,7 +53,7 @@ int prim_mst(weightedGraph* graph, int start_node)
     }
 
     key[start_node] = 0;
-    if(!insert_pq_graph(&pq, start_node, 0))
+    if (!insert_pq_graph(&pq, start_node, 0))
     {
         printf("Malloc failed\n");
         free(key);
@@ -108,7 +108,7 @@ int prim_mst(weightedGraph* graph, int start_node)
             {
                 key[v] = weight;
                 parent[v] = u;
-                if(!insert_pq_graph(&pq, v, key[v]))
+                if (!insert_pq_graph(&pq, v, key[v]))
                 {
                     printf("Malloc failed\n");
                     free(key);

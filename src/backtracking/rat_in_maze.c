@@ -8,14 +8,8 @@
 #define N 6
 
 // 1 represents an open path, 0 represents a wall
-static int initial_maze[N][N] = {
-    {1, 1, 1, 1, 0, 1},
-    {1, 0, 0, 1, 0, 1},
-    {1, 1, 1, 1, 1, 1},
-    {0, 1, 0, 0, 0, 1},
-    {1, 1, 0, 1, 1, 1},
-    {1, 0, 0, 1, 0, 1}
-};
+static int initial_maze[N][N] = {{1, 1, 1, 1, 0, 1}, {1, 0, 0, 1, 0, 1}, {1, 1, 1, 1, 1, 1},
+                                 {0, 1, 0, 0, 0, 1}, {1, 1, 0, 1, 1, 1}, {1, 0, 0, 1, 0, 1}};
 
 static void print_maze_state(int maze[N][N], int solution[N][N])
 {
@@ -123,8 +117,9 @@ void rat_in_maze_demo(void)
     while (1)
     {
         int choice;
-        int status = safe_input_int(&choice, "\nEnter 1 to solve the predefined 6x6 Rat in a Maze, or -1 to exit: ", 1, 1);
-        
+        int status = safe_input_int(
+            &choice, "\nEnter 1 to solve the predefined 6x6 Rat in a Maze, or -1 to exit: ", 1, 1);
+
         if (status == INPUT_EXIT_SIGNAL)
         {
             printf("\nExiting Rat in a Maze...\n");
@@ -132,12 +127,12 @@ void rat_in_maze_demo(void)
         }
         if (status == 0)
         {
-            continue; 
+            continue;
         }
 
         int maze[N][N];
         int solution[N][N];
-        
+
         // Initialize maze and empty solution matrix
         for (int i = 0; i < N; i++)
         {

@@ -32,7 +32,7 @@ int greedy_best_first_search_solve(weightedGraph* graph, int start, int dest, in
     if (!pq.heap)
         goto cleanup;
 
-    if(!insert_pq_graph(&pq, start, h[start]))
+    if (!insert_pq_graph(&pq, start, h[start]))
     {
         printf("Malloc failed\n");
         free(visited);
@@ -70,7 +70,7 @@ int greedy_best_first_search_solve(weightedGraph* graph, int start, int dest, in
             if (!visited[v] && parent[v] == -1 && v != start)
             {
                 parent[v] = u;
-                if(!insert_pq_graph(&pq, v, h[v]))
+                if (!insert_pq_graph(&pq, v, h[v]))
                 {
                     printf("Malloc failed\n");
                     free(visited);
@@ -113,13 +113,13 @@ void greedy_best_first_search(weightedGraph* graph, int start, int dest, int h[]
     int found = greedy_best_first_search_solve(graph, start, dest, h, parent, traversal_order,
                                                &traversal_len);
 
-    if(found == -1)
+    if (found == -1)
     {
         free(parent);
         free(traversal_order);
         return;
     }
-    
+
     end_t = clock();
     total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
 

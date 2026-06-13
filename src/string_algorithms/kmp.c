@@ -6,8 +6,6 @@
 #include <string.h>
 #include <time.h>
 
-
-
 static void compute_lps_array(char* pattern, int m, int* lps)
 {
     int length = 0;
@@ -56,7 +54,8 @@ void kmp_search(char* text, char* pattern)
     int m = strlen(pattern);
     int found = 0;
 
-    if (m == 0) return;
+    if (m == 0)
+        return;
 
     int* lps = (int*)malloc(m * sizeof(int));
     compute_lps_array(pattern, m, lps);

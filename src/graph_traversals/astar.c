@@ -41,7 +41,7 @@ int astar_solve(weightedGraph* graph, int start, int dest, int h[], int parent[]
     dist[start] = 0;
     fScore[start] = h[start];
 
-    if(!insert_pq_graph(&pq, start, fScore[start]))
+    if (!insert_pq_graph(&pq, start, fScore[start]))
     {
         printf("Malloc failed\n");
         free(visited);
@@ -97,7 +97,7 @@ int astar_solve(weightedGraph* graph, int start, int dest, int h[], int parent[]
                     }
                     fScore[v] = tentative_f;
 
-                    if(!insert_pq_graph(&pq, v, fScore[v]))
+                    if (!insert_pq_graph(&pq, v, fScore[v]))
                     {
                         printf("Malloc failed\n");
                         free(visited);
@@ -138,8 +138,8 @@ void astar(weightedGraph* graph, int start, int dest, int h[])
 
     start_t = clock();
     int cost = astar_solve(graph, start, dest, h, parent);
-    
-    if(cost == -1)
+
+    if (cost == -1)
     {
         printf("Astar failed");
         return;

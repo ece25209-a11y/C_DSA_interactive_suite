@@ -85,12 +85,12 @@ void circular_queue_Demo(void)
                     continue;
                 }
                 *value = enqueue_val;
-                if(enqueue(&rollnos, value) == -1)
+                if (enqueue(&rollnos, value) == -1)
                 {
                     free(value);
                     printf("Queue is full (Circular Overflow)\n");
                 }
-                
+
                 display_circ_queue(&rollnos);
             }
 
@@ -131,7 +131,7 @@ void destroy_circ_queue(Queue* queue_ptr)
 {
     if (queue_ptr == NULL || queue_ptr->arr == NULL)
         return;
-    
+
     int i = queue_ptr->front;
 
     while (i != queue_ptr->rear)
@@ -148,11 +148,12 @@ void destroy_circ_queue(Queue* queue_ptr)
 }
 
 int enqueue(Queue* queue_ptr, void* value)
-{ 
+{
     // one slot is kept empty to differentiate between full and empty queue
-    if ((queue_ptr == NULL)|| (queue_ptr->arr == NULL) || (((queue_ptr->rear) + 1) % (queue_ptr->N) == queue_ptr->front))
+    if ((queue_ptr == NULL) || (queue_ptr->arr == NULL) ||
+        (((queue_ptr->rear) + 1) % (queue_ptr->N) == queue_ptr->front))
         return -1;
-    
+
     queue_ptr->arr[queue_ptr->rear] = value;
     queue_ptr->rear = ((queue_ptr->rear) + 1) % (queue_ptr->N);
     return 1;
@@ -169,7 +170,7 @@ void* dequeue(Queue* queue_ptr)
 
 void display_circ_queue(Queue* queue_ptr)
 {
-    if(queue_ptr == NULL)
+    if (queue_ptr == NULL)
         return;
 
     int i = queue_ptr->front;

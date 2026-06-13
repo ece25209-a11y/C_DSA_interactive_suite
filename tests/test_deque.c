@@ -1,8 +1,8 @@
 #include "data_structures.h"
+#include "returnMallocVal.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "returnMallocVal.h"
 
 void test_deque_init()
 {

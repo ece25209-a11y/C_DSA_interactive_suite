@@ -7,8 +7,6 @@
 
 #define d 256
 
-
-
 void rabin_karp_search(char* text, char* pattern, int q)
 {
     int m = strlen(pattern);
@@ -20,7 +18,8 @@ void rabin_karp_search(char* text, char* pattern, int q)
     int found = 0;
     int collisions = 0;
 
-    if (m == 0) return;
+    if (m == 0)
+        return;
 
     for (i = 0; i < m - 1; i++)
         h = (h * d) % q;

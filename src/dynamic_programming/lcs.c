@@ -77,7 +77,6 @@ int lcs(char* X, char* Y, int m, int n)
     return res;
 }
 
-
 void lcs_demo(void)
 {
     while (1)

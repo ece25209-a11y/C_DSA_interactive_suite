@@ -16,14 +16,15 @@
 #endif
 
 // ANSI styles
-#define ANSI_COLOR_RESET   "\033[0m"
+#define ANSI_COLOR_RESET "\033[0m"
 
 static int delay_time = 150; // default delay in ms
 
 static const int x_move[8] = {2, 1, -1, -2, -2, -1, 1, 2};
 static const int y_move[8] = {1, 2, 2, 1, -1, -2, -2, -1};
 
-typedef struct {
+typedef struct
+{
     int index;
     int degree;
 } MoveCandidate;
@@ -172,9 +173,8 @@ void knights_tour_demo(void)
     while (1)
     {
         int N;
-        int status = safe_input_int(&N,
-                                    "\nEnter the board size N (between 4 and 8), or -1 to exit: ",
-                                    4, 8);
+        int status =
+            safe_input_int(&N, "\nEnter the board size N (between 4 and 8), or -1 to exit: ", 4, 8);
 
         if (status == INPUT_EXIT_SIGNAL)
         {

@@ -1,8 +1,8 @@
 #include "data_structures.h"
-#include "safe_input.h"
-#include "returnMallocVal.h"
-#include <stdio.h>
 #include "graph_traversals.h"
+#include "returnMallocVal.h"
+#include "safe_input.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -78,8 +78,7 @@ void topological_sort_kahn(Graph* graph)
     /* Step 4: Cycle detection */
     if (processed != size)
     {
-        printf("Cycle detected! Only %d of %d vertices were processed.\n",
-               processed, size);
+        printf("Cycle detected! Only %d of %d vertices were processed.\n", processed, size);
         printf("The graph is NOT a DAG -- topological sort is not possible.\n");
     }
     else

@@ -50,7 +50,7 @@ bool deque_is_empty(const Queue* dq)
 
 bool deque_is_full(const Queue* dq)
 {
-    if(dq == NULL)
+    if (dq == NULL)
         return false;
     return ((dq->front == 0 && dq->rear == dq->N - 1) || (dq->front == dq->rear + 1));
 }
@@ -246,9 +246,9 @@ void deque_demo(void)
                 }
                 if (val_status == 0)
                     continue;
-                
+
                 int* ptr = malloc(sizeof(int));
-                if(ptr == NULL)
+                if (ptr == NULL)
                 {
                     printf("Malloc failed\n");
                     continue;
@@ -275,9 +275,9 @@ void deque_demo(void)
                 }
                 if (val_status == 0)
                     continue;
-                
+
                 int* ptr = malloc(sizeof(int));
-                if(ptr == NULL)
+                if (ptr == NULL)
                 {
                     printf("Malloc failed\n");
                     continue;

@@ -87,9 +87,9 @@ void simple_queue_Demo(void)
                 { // invalid input, (chars or number+chars) loopback to start
                     continue;
                 }
-                
+
                 int* ptr = malloc(sizeof(int));
-                if(ptr == NULL)
+                if (ptr == NULL)
                 {
                     printf("Malloc failed\n");
                     continue;
@@ -151,7 +151,7 @@ void destroy_simple_queue(Queue* queue_ptr)
             free(queue_ptr->arr[i]);
         }
     }
-    
+
     free(queue_ptr->arr);
     queue_ptr->arr = NULL;
     queue_ptr->front = -1;
@@ -160,7 +160,7 @@ void destroy_simple_queue(Queue* queue_ptr)
 }
 
 int enqueue_simple(Queue* queue_ptr, void* value)
-{ 
+{
     // rear never moves backward, so a slot freed by dequeue at the front is not reclaimed
     if (queue_ptr == NULL || queue_ptr->arr == NULL || queue_ptr->rear == queue_ptr->N - 1)
         return -1;
@@ -173,7 +173,8 @@ int enqueue_simple(Queue* queue_ptr, void* value)
 
 void* dequeue_simple(Queue* queue_ptr)
 {
-    if (queue_ptr == NULL || queue_ptr->arr == NULL || queue_ptr->front == -1 || queue_ptr->front > queue_ptr->rear)
+    if (queue_ptr == NULL || queue_ptr->arr == NULL || queue_ptr->front == -1 ||
+        queue_ptr->front > queue_ptr->rear)
         return NULL;
     void* front_value = queue_ptr->arr[queue_ptr->front];
     if (queue_ptr->front == queue_ptr->rear)
@@ -190,7 +191,8 @@ void* dequeue_simple(Queue* queue_ptr)
 
 void display_simple_queue(const Queue* queue_ptr)
 {
-    if (queue_ptr == NULL || queue_ptr->arr == NULL || queue_ptr->front == -1 || queue_ptr->front > queue_ptr->rear)
+    if (queue_ptr == NULL || queue_ptr->arr == NULL || queue_ptr->front == -1 ||
+        queue_ptr->front > queue_ptr->rear)
     {
         printf("\nQueue (front -> rear): [empty]\n");
         return;

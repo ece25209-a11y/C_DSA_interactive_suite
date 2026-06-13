@@ -9,14 +9,8 @@
 
 // A 6x6 Sudoku puzzle with some missing numbers to demonstrate backtracking.
 // It is small enough to run quickly even with the 1-second animation delay.
-static int initial_grid[N][N] = {
-    {1, 5, 3, 4, 6, 0},
-    {4, 6, 2, 0, 1, 3},
-    {2, 4, 5, 6, 3, 1},
-    {0, 1, 6, 2, 4, 5},
-    {5, 3, 4, 1, 2, 6},
-    {6, 0, 1, 3, 5, 4}
-};
+static int initial_grid[N][N] = {{1, 5, 3, 4, 6, 0}, {4, 6, 2, 0, 1, 3}, {2, 4, 5, 6, 3, 1},
+                                 {0, 1, 6, 2, 4, 5}, {5, 3, 4, 1, 2, 6}, {6, 0, 1, 3, 5, 4}};
 
 static void print_sudoku_board(int grid[N][N])
 {
@@ -127,7 +121,7 @@ static bool solve_sudoku_util(int grid[N][N], int row, int col)
         }
 
         // Backtrack: assumption was wrong
-        grid[row][col] = 0; 
+        grid[row][col] = 0;
         print_sudoku_board(grid);
     }
     return false;
@@ -139,8 +133,9 @@ void sudoku_demo(void)
     {
         int choice;
         // safe_input_int prevents crashes from ANY invalid value (letters, symbols, out of range)
-        int status = safe_input_int(&choice, "\nEnter 1 to solve the predefined 6x6 Sudoku puzzle, or -1 to exit: ", 1, 1);
-        
+        int status = safe_input_int(
+            &choice, "\nEnter 1 to solve the predefined 6x6 Sudoku puzzle, or -1 to exit: ", 1, 1);
+
         if (status == INPUT_EXIT_SIGNAL)
         {
             printf("\nExiting Sudoku Solver...\n");
