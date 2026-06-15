@@ -52,7 +52,7 @@ static Entry ENTRIES[] = {
     {"Priority Queue", priority_queue_demo, 0, 0, 1},
     {"Linear Queue", simple_queue_Demo, 0, 0, 1},
     {"Circular Data Structures", NULL, 1, 0, 0},
-    {"Circular Queue", circular_queue_demo, 0, 0, 1},
+    {"Circular Queue", circular_queue_Demo, 0, 0, 1},
     {"Singly Circular Queue", scll_Demo, 0, 0, 1},
     {"Double-ended Queue", deque_demo, 0, 0, 1},
 
@@ -60,7 +60,7 @@ static Entry ENTRIES[] = {
     {"Backtracking", NULL, 1, 1, 0},
     {"N queens", n_queens_demo, 0, 0, 1},
     {"Sudoku", sudoku_demo, 0, 0, 1},
-    {"Rat in a Maze", rat_in_a_maze_demo, 0, 0, 1},
+    {"Rat in a Maze", rat_in_maze_demo, 0, 0, 1},
     {"Graph Coloring", graph_coloring_demo, 0, 0, 1},
     {"Knights Tour", knights_tour_demo, 0, 0, 1},
     
