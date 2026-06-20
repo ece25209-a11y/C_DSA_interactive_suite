@@ -7,7 +7,7 @@
 // printlist, search
 // deleteByValue and reverseList
 
-void sll_Demo(void)
+void sll_demo(void)
 {
     Node* head = NULL;
     int sll_element_count;

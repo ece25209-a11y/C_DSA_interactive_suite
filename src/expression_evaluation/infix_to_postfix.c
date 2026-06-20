@@ -28,7 +28,7 @@ int isOperator(char ch)
     return 0;
 }
 
-void infix_to_postfix_Demo(void)
+void infix_to_postfix_demo(void)
 {
     char infix_expr[50];
     char postfix_expr[50];
