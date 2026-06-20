@@ -11,7 +11,7 @@
 // main while loop, it indicates malformed postfix expression and program exits with error code '-1'
 // and on succesful evaluation returns '0' maximum expression length is 50 characters
 
-void postfix_evaluation_Demo(void)
+void postfix_evaluation_demo(void)
 {
     char postfix_expr[50];
     while (1)

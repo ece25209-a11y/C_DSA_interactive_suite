@@ -62,7 +62,7 @@ int sll_deleteAtBeginning(Node** head_ref);
 int sll_deleteAtEnd(Node** head_ref);
 int sll_deleteByValue(Node** head_ref, int value);
 int sll_insertAtBeginning(Node** head_ref, int value);
-void sll_Demo(void);
+void sll_demo(void);
 int sll_search(const Node* head, int key);
 int sll_reverseList(Node** head_ref);
 void delete_sll(Node* head);
@@ -119,7 +119,7 @@ int scll_search(const scll* list, int key);
 int scll_getLength(const scll* list);
 void scll_printlist(const scll* list);
 void scll_destroy(scll* list);
-void scll_Demo(void);
+void scll_demo(void);
 
 // Universal non-speacial queue structure
 typedef struct Queue
@@ -136,7 +136,7 @@ void destroy_circ_queue(Queue* queue_ptr);
 int enqueue(Queue* queue_ptr, void* value);
 void* dequeue(Queue* queue_ptr);
 void display_circ_queue(Queue* queue_ptr);
-void circular_queue_Demo(void);
+void circular_queue_demo(void);
 
 // For simple (linear) queue
 int init_simple_queue(int N, Queue* queue_ptr);
@@ -144,7 +144,7 @@ void destroy_simple_queue(Queue* queue_ptr);
 int enqueue_simple(Queue* queue_ptr, void* value);
 void* dequeue_simple(Queue* queue_ptr);
 void display_simple_queue(const Queue* queue_ptr);
-void simple_queue_Demo(void);
+void simple_queue_demo(void);
 
 // For Double-Ended Queue (Deque)
 int init_deque(int N, Queue* dq);
@@ -188,6 +188,6 @@ int dcll_search(const dcll* list, int key);
 int dcll_getLength(const dcll* list);
 void dcll_printlist(const dcll* list);
 void dcll_destroy(dcll* list);
-void dcll_Demo(void);
+void dcll_demo(void);
 
 #endif

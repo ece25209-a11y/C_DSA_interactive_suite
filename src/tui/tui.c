@@ -1,4 +1,3 @@
-
 // #include <math.h>
 #include <ncurses.h>
 // #include <stdlib.h>
@@ -59,15 +58,15 @@ static Entry ENTRIES[] = {
 
     {"data_structures", NULL, 1, 1, 0},
     {"Linear Data Structures", NULL, 1, 0, 0},
-    {"Singly Linked List", sll_Demo, 0, 0, 1},
+    {"Singly Linked List", sll_demo, 0, 0, 1},
     {"Doubly Linked List", dll_demo, 0, 0, 1},
     {"Array", array_demo, 0, 0, 1},
     {"Priority Queue", priority_queue_demo, 0, 0, 1},
-    {"Linear Queue", simple_queue_Demo, 0, 0, 1},
+    {"Linear Queue", simple_queue_demo, 0, 0, 1},
     {"Circular Data Structures", NULL, 1, 0, 0},
-    {"Circular Queue", circular_queue_Demo, 0, 0, 1},
-    {"Singly Circular Linked List", scll_Demo, 0, 0, 1},
-    {"Doubly Circular Linked List", dcll_Demo, 0, 0, 1},
+    {"Circular Queue", circular_queue_demo, 0, 0, 1},
+    {"Singly Circular Linked List", scll_demo, 0, 0, 1},
+    {"Doubly Circular Linked List", dcll_demo, 0, 0, 1},
     {"Double-ended Queue", deque_demo, 0, 0, 1},
 
     {"Backtracking", NULL, 1, 1, 0},
@@ -84,7 +83,7 @@ static Entry ENTRIES[] = {
     {"matrix Chain", mcm_demo, 0, 0, 1},
 
     {"trees", NULL, 1, 1, 0},
-    {"Binary Search Tree", binary_search_tree_Demo, 0, 0, 1},
+    {"Binary Search Tree", binary_search_tree_demo, 0, 0, 1},
     {"AVL Tree", avl_demo, 0, 0, 1},
     {"Threaded Binary Tree", TBT_demo, 0, 0, 1},
     {"Trie", trie_demo, 0, 0, 1},
@@ -131,8 +130,8 @@ static Entry ENTRIES[] = {
     {"Quadratic Probing", quadratic_probing_demo, 0, 0, 1},
 
     {"expression_evaluation", NULL, 1, 1, 0},
-    {"Infix to Postfix", infix_to_postfix_Demo, 0, 0, 1},
-    {"Postfix Evaluation", postfix_evaluation_Demo, 0, 0, 1},
+    {"Infix to Postfix", infix_to_postfix_demo, 0, 0, 1},
+    {"Postfix Evaluation", postfix_evaluation_demo, 0, 0, 1},
     {"Parentheses Checker", parantheses_checker_demo, 0, 0, 1},
     {"Infix to Prefix", infix_to_prefix_demo, 0, 0, 1},
 
