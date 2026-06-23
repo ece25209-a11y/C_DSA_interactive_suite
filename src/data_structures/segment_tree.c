@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+// Add this line right here to silence the unused parameter error
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
 SegmentTree* create_segment_tree(int arr[], int n) {
     if (n <= 0) return NULL;
     SegmentTree* st = (SegmentTree*)malloc(sizeof(SegmentTree));
