@@ -26,10 +26,10 @@ int mock_printf(const char* format, ...)
 
 // Redirect printf to our mock
 #define printf mock_printf
-#include "../src/graph_traversals/bfs.c"
+#include "../../src/graph_traversals/dfs.c"
 #undef printf
 
-void test_bfs_simple()
+void test_dfs_simple()
 {
     reset_printf_buf();
 
@@ -43,15 +43,19 @@ void test_bfs_simple()
     add_edge_undirected(graph, 1, 3);
     add_edge_undirected(graph, 2, 3);
 
-    bfs(graph, 0);
+    dfs(graph, 0);
 
-    // BFS order should print: 0->1->2->3->end
-    assert(strstr(g_printf_buf, "0->1->2->3->end") != NULL);
+    // Assert that the DFS traverses all nodes starting with 0 and ending with end
+    assert(strstr(g_printf_buf, "0->") != NULL);
+    assert(strstr(g_printf_buf, "1->") != NULL);
+    assert(strstr(g_printf_buf, "2->") != NULL);
+    assert(strstr(g_printf_buf, "3->") != NULL);
+    assert(strstr(g_printf_buf, "end") != NULL);
 
     free_graph(graph);
 }
 
-void test_bfs_disconnected()
+void test_dfs_disconnected()
 {
     reset_printf_buf();
 
@@ -61,9 +65,9 @@ void test_bfs_disconnected()
     // Only add 0-1 edge, 2 and 3 are disconnected
     add_edge_undirected(graph, 0, 1);
 
-    bfs(graph, 0);
+    dfs(graph, 0);
 
-    // BFS order starting from 0 should only traverse 0 and 1: 0->1->end
+    // DFS order starting from 0 should only traverse 0 and 1: e.g. 0->1->end
     assert(strstr(g_printf_buf, "0->1->end") != NULL);
 
     free_graph(graph);
@@ -71,9 +75,9 @@ void test_bfs_disconnected()
 
 int main()
 {
-    test_bfs_simple();
-    test_bfs_disconnected();
+    test_dfs_simple();
+    test_dfs_disconnected();
 
-    fprintf(stdout, "All BFS tests passed\n");
+    fprintf(stdout, "All DFS tests passed\n");
     return 0;
 }

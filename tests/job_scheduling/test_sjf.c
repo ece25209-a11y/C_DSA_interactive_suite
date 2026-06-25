@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../src/job_scheduling/job_scheduling.h"
+#include "../../src/job_scheduling/job_scheduling.h"
 
 // Globals to feed input and collect output
 static Process g_input_procs[10];
@@ -47,86 +47,85 @@ void mock_add_to_history(const char* algorithm, int size, double execution_time)
     (void)execution_time;
 }
 
-// Include the source file directly so the compiler compiles srtf_demo
+// Include the source file directly so the compiler compiles sjf_demo
 // as part of this translation unit, bypassing duplicate symbol linking.
-#include "../src/job_scheduling/srtf.c"
+#include "../../src/job_scheduling/sjf.c"
 
-void test_srtf_basic()
+void test_sjf_basic()
 {
     // Initialize input processes
     g_input_count = 4;
     
-    // Process 1: id=1, arrival=0, burst=8
+    // Process 1: id=1, arrival=0, burst=6
     g_input_procs[0].id = 1;
     g_input_procs[0].arrival = 0;
-    g_input_procs[0].burst = 8;
+    g_input_procs[0].burst = 6;
     g_input_procs[0].priority = 0;
     
-    // Process 2: id=2, arrival=1, burst=4
+    // Process 2: id=2, arrival=2, burst=2
     g_input_procs[1].id = 2;
-    g_input_procs[1].arrival = 1;
-    g_input_procs[1].burst = 4;
+    g_input_procs[1].arrival = 2;
+    g_input_procs[1].burst = 2;
     g_input_procs[1].priority = 0;
     
-    // Process 3: id=3, arrival=2, burst=9
+    // Process 3: id=3, arrival=4, burst=1
     g_input_procs[2].id = 3;
-    g_input_procs[2].arrival = 2;
-    g_input_procs[2].burst = 9;
+    g_input_procs[2].arrival = 4;
+    g_input_procs[2].burst = 1;
     g_input_procs[2].priority = 0;
 
-    // Process 4: id=4, arrival=3, burst=5
+    // Process 4: id=4, arrival=5, burst=4
     g_input_procs[3].id = 4;
-    g_input_procs[3].arrival = 3;
-    g_input_procs[3].burst = 5;
+    g_input_procs[3].arrival = 5;
+    g_input_procs[3].burst = 4;
     g_input_procs[3].priority = 0;
 
     // Run the scheduler demo (which will execute the mocked functions)
-    srtf_demo();
+    sjf_demo();
 
     // Assert results
     assert(g_output_count == 4);
     
-    // SRTF execution order:
-    // [0-1]: P1 (P1 remaining becomes 7)
-    // [1-5]: P2 runs to completion (P2 finishes at 5)
-    // [5-10]: P4 runs to completion (P4 finishes at 10)
-    // [10-17]: P1 runs to completion (P1 finishes at 17)
-    // [17-26]: P3 runs to completion (P3 finishes at 26)
+    // SJF execution order should be P1, P3, P2, P4
+    // P1: starts at 0, finishes at 6. Wait = 0, Turnaround = 6
+    // P3: starts at 6, finishes at 7. Wait = 2, Turnaround = 3
+    // P2: starts at 7, finishes at 9. Wait = 5, Turnaround = 7
+    // P4: starts at 9, finishes at 13. Wait = 4, Turnaround = 8
 
     // Find and verify each process's computed values
     for (int i = 0; i < g_output_count; i++)
     {
         if (g_output_procs[i].id == 1)
         {
-            assert(g_output_procs[i].completion == 17);
-            assert(g_output_procs[i].turnaround == 17);
-            assert(g_output_procs[i].waiting == 9);
+            assert(g_output_procs[i].completion == 6);
+            assert(g_output_procs[i].turnaround == 6);
+            assert(g_output_procs[i].waiting == 0);
         }
         else if (g_output_procs[i].id == 2)
         {
-            assert(g_output_procs[i].completion == 5);
-            assert(g_output_procs[i].turnaround == 4);
-            assert(g_output_procs[i].waiting == 0);
+            assert(g_output_procs[i].completion == 9);
+            assert(g_output_procs[i].turnaround == 7);
+            assert(g_output_procs[i].waiting == 5);
         }
         else if (g_output_procs[i].id == 3)
         {
-            assert(g_output_procs[i].completion == 26);
-            assert(g_output_procs[i].turnaround == 24);
-            assert(g_output_procs[i].waiting == 15);
+            assert(g_output_procs[i].completion == 7);
+            assert(g_output_procs[i].turnaround == 3);
+            assert(g_output_procs[i].waiting == 2);
         }
         else if (g_output_procs[i].id == 4)
         {
-            assert(g_output_procs[i].completion == 10);
-            assert(g_output_procs[i].turnaround == 7);
-            assert(g_output_procs[i].waiting == 2);
+            assert(g_output_procs[i].completion == 13);
+            assert(g_output_procs[i].turnaround == 8);
+            assert(g_output_procs[i].waiting == 4);
         }
     }
-    printf("SRTF basic test passed\n");
+    printf("SJF basic test passed\n");
 }
 
 int main()
 {
-    test_srtf_basic();
-    printf("All SRTF tests passed\n");
+    test_sjf_basic();
+    printf("All SJF tests passed\n");
     return 0;
 }
