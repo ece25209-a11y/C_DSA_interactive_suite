@@ -115,6 +115,7 @@ TEST_BINS = test_circ_queue test_bst test_search test_hash_func \
             test_string_algorithms test_expression_evaluation \
             test_fcfs test_sjf test_srtf test_round_robin test_priority_scheduling test_preemptive_priority \
             test_dining_philosophers test_petersons test_producer_consumer
+            test_dijkstra test_bellman_ford test_bfs test_dfs test_topological_sort
 
 test: $(TEST_BINS)
 
@@ -424,6 +425,33 @@ $(TEST_DIR)/test_petersons$(EXE): $(filter-out $(OBJ_DIR)/src/process_synchroniz
 test_producer_consumer: $(TEST_DIR)/test_producer_consumer$(EXE)
 	$(TEST_DIR)/test_producer_consumer$(EXE)
 $(TEST_DIR)/test_producer_consumer$(EXE): $(filter-out $(OBJ_DIR)/src/process_synchronization/producer_consumer.o,$(OBJS)) tests/process_synchronization/test_producer_consumer.c
+test_dijkstra: $(TEST_DIR)/test_dijkstra$(EXE)
+	$(TEST_DIR)/test_dijkstra$(EXE)
+$(TEST_DIR)/test_dijkstra$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/dijkstra.o,$(OBJS)) tests/graph_traversals/test_dijkstra.c
+	@$(call MKDIR_P,$(TEST_DIR))
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+test_bellman_ford: $(TEST_DIR)/test_bellman_ford$(EXE)
+	$(TEST_DIR)/test_bellman_ford$(EXE)
+$(TEST_DIR)/test_bellman_ford$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/bellman_ford.o,$(OBJS)) tests/graph_traversals/test_bellman_ford.c
+	@$(call MKDIR_P,$(TEST_DIR))
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+test_bfs: $(TEST_DIR)/test_bfs$(EXE)
+	$(TEST_DIR)/test_bfs$(EXE)
+$(TEST_DIR)/test_bfs$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/bfs.o,$(OBJS)) tests/graph_traversals/test_bfs.c
+	@$(call MKDIR_P,$(TEST_DIR))
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+test_dfs: $(TEST_DIR)/test_dfs$(EXE)
+	$(TEST_DIR)/test_dfs$(EXE)
+$(TEST_DIR)/test_dfs$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/dfs.o,$(OBJS)) tests/graph_traversals/test_dfs.c
+	@$(call MKDIR_P,$(TEST_DIR))
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+test_topological_sort: $(TEST_DIR)/test_topological_sort$(EXE)
+	$(TEST_DIR)/test_topological_sort$(EXE)
+$(TEST_DIR)/test_topological_sort$(EXE): $(filter-out $(OBJ_DIR)/src/graph_traversals/topological_sort.o,$(OBJS)) tests/graph_traversals/test_topological_sort.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
