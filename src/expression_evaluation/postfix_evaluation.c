@@ -40,6 +40,8 @@ void postfix_evaluation_demo(void)
         int step = 1;
         char action_msg[200];
         int current_result = 0;
+        int error_occurred = 0;
+
         while (postfix_expr[i] != '\0')
         {
             if (!is_instant())
@@ -67,14 +69,16 @@ void postfix_evaluation_demo(void)
             {
                 if (isEmpty(operands))
                 {
-                    destroyStack(operands);
-                    return;
+                    printf("\n[Error] Invalid expression: Stack underflow (missing operands for operator '%c')\n", ch);
+                    error_occurred = 1;
+                    break;
                 }
                 int right_operand = pop(operands);
                 if (isEmpty(operands))
                 {
-                    destroyStack(operands);
-                    return;
+                    printf("\n[Error] Invalid expression: Stack underflow (missing operands for operator '%c')\n", ch);
+                    error_occurred = 1;
+                    break;
                 }
                 int left_operand = pop(operands);
                 int result = 0;
@@ -106,8 +110,9 @@ void postfix_evaluation_demo(void)
                 {
                     if (right_operand == 0)
                     {
-                        destroyStack(operands);
-                        return;
+                        printf("\n[Error] Division by zero encountered.\n");
+                        error_occurred = 1;
+                        break;
                     }
                     result = left_operand / right_operand;
                     snprintf(action_msg, sizeof(action_msg),
@@ -130,6 +135,12 @@ void postfix_evaluation_demo(void)
 
             i++;
             dynamic_sleep();
+        }
+
+        if (error_occurred)
+        {
+            destroyStack(operands);
+            continue;
         }
 
         if (isEmpty(operands))
