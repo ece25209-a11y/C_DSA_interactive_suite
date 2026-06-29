@@ -134,6 +134,10 @@ ifneq ($(wildcard tests/benchmark/test_benchmark_graphs.c),)
 TEST_BINS += test_benchmark_graphs
 endif
 
+ifneq ($(wildcard tests/benchmark/test_benchmark_flow.c),)
+TEST_BINS += test_benchmark_flow
+endif
+
 ifneq ($(wildcard tests/benchmark/test_benchmark_mst.c),)
 TEST_BINS += test_benchmark_mst
 endif
@@ -388,6 +392,13 @@ test_benchmark_graphs: $(TEST_DIR)/test_benchmark_graphs$(EXE)
 	$(TEST_DIR)/test_benchmark_graphs$(EXE)
 
 $(TEST_DIR)/test_benchmark_graphs$(EXE): $(OBJS) tests/benchmark/test_benchmark_graphs.c
+	@$(call MKDIR_P,$(TEST_DIR))
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+test_benchmark_flow: $(TEST_DIR)/test_benchmark_flow$(EXE)
+	$(TEST_DIR)/test_benchmark_flow$(EXE)
+
+$(TEST_DIR)/test_benchmark_flow$(EXE): $(OBJS) tests/benchmark/test_benchmark_flow.c
 	@$(call MKDIR_P,$(TEST_DIR))
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
