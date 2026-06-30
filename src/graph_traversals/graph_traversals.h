@@ -134,4 +134,7 @@ int hopcroft_karp(Graph* graph, int** match_pairs, int* match_count);
 // ------------------For Eulerian Path----------------------------------------
 int find_eulerian_path(Graph* graph, int** path, int* path_len);
 
+void bipartite_matching_demo(void);
+void eulerian_path_demo(void);
+
 #endif
