@@ -1,6 +1,7 @@
 #include "data_structures.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 int push(stack* s, int value)
 {
@@ -29,7 +30,7 @@ stack* createStack(void)
     return stack_obj;
 }
 
-int isEmpty(const stack* s)
+bool isEmpty(const stack* s)
 {
     return s->top == NULL;
 }
