@@ -53,11 +53,16 @@ void run_trees_benchmark(int n)
     printf("%-30s %-25s %-15s %-10s\n", "Structure", "Execution Time", "Peak Memory", "Status");
     printf("------------------------------------------------------------------------\n");
 
-    const char* algos[] = {"Binary Search Tree (BST)", "Threaded Binary Tree (TBT)",
-                           "AVL Tree (Balanced)",      "Trie (Prefix Tree)",
-                           "B-Tree (t = 3)",           "B+ Tree (order = 4)"};
+    const char* algos[] = {"Binary Search Tree (BST)",
+                           "Threaded Binary Tree (TBT)",
+                           "AVL Tree (Balanced)",
+                           "Trie (Prefix Tree)",
+                           "B-Tree (t = 3)",
+                           "B+ Tree (order = 4)",
+                           "Segment Tree",
+                           "Fenwick Tree (BIT)"};
 
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 8; i++)
     {
         double times[BENCHMARK_DEFAULT_ITERATIONS];
         size_t peak_mem = 0;
@@ -194,6 +199,37 @@ void run_trees_benchmark(int n)
                     bplus_tree_destroy(tree);
                 }
             }
+        }
+        else if (i == 6) // Segment Tree Simulation
+        {
+            SegmentTree* st = create_segment_tree(keys, n);
+            for (int k = 0; k < n; k++)
+            {
+                update_point(st, 1, 0, n - 1, k, keys[k] / 2);
+            }
+            destroy_segment_tree(st);
+        }
+        else if (i == 7) // Fenwick Tree Simulation
+        {
+            FenwickTree* ft = create_fenwick_tree(n);
+            for (int k = 0; k < n; k++)
+            {
+                fenwick_range_update(ft, 1, k + 1, keys[k]);
+            }
+            destroy_fenwick_tree(ft);
+        }
+
+        // Restore stdout
+        fflush(stdout);
+        if (stdout_dup >= 0)
+        {
+            dup2(stdout_dup, 1);
+            close(stdout_dup);
+        }
+        if (fnull != NULL)
+        {
+            fclose(fnull);
+        }
 
             // Restore stdout
             fflush(stdout);
