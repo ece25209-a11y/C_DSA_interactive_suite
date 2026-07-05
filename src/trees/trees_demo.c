@@ -20,6 +20,7 @@ void trees_demo(void)
                                      "\nenter 6 for B+ Tree demo"
                                      "\nenter 7 for Segment Tree demo"
                                      "\nenter 8 for Fenwick Tree (BIT) demo"
+                                     "\nenter 8 for Red-Black Tree demo"
                                      "\nenter choice : ",
                                      1, 8);
 
@@ -38,39 +39,37 @@ void trees_demo(void)
                 display_header("Binary Search Tree");
                 binary_search_tree_demo();
                 break;
-
             case 2:
                 display_header("AVL Tree");
                 avl_demo();
                 break;
-
             case 3:
                 display_header("Threaded Binary Tree");
                 TBT_demo();
                 break;
-
             case 4:
                 display_header("Trie");
                 trie_demo();
                 break;
-
             case 5:
                 display_header("B-Tree");
                 btree_demo();
                 break;
-
             case 6:
                 display_header("B+ Tree");
                 bplus_tree_demo();
                 break;
 
            case 7:
+            case 7:
                 display_header("Segment Tree");
                 segment_tree_demo();
                 break;
             case 8:
                 display_header("Fenwick Tree (BIT)");
                 fenwick_tree_demo();
+                display_header("Red-Black Tree");
+                red_black_tree_demo();
                 break;
         }
     }
