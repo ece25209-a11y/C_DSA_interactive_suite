@@ -4,7 +4,7 @@
 #include <string.h>
 // #include <locale.h>
 
-#include "../utils/config.h"
+#include "config.h"
 #include "advanced_graph_algorithms.h"
 #include "advanced_heaps.h"
 #include "advanced_sorting.h"
