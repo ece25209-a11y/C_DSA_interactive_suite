@@ -11,19 +11,21 @@ typedef enum
     CHOICE_TRIE,
     CHOICE_BTREE,
     CHOICE_BPLUS,
-    CHOICE_SEGMENT
+    CHOICE_SEGMENT,
+    CHOICE_FENWICK,
+    CHOICE_SPLAY,
+    CHOICE_RBT
 } TreeChoice;
 
 void trees_demo(void)
 {
-    int tree_status;
-    TreeChoice tree_choice;
+    int tree_status, tree_choice;
 
     while (1)
     {
         display_header("Trees");
 
-        tree_status = safe_input_int((int*)&tree_choice,
+        tree_status = safe_input_int(&tree_choice,
                                      "\nenter 1 for Binary Search Tree demo"
                                      "\nenter 2 for AVL Tree demo"
                                      "\nenter 3 for Threaded Binary Tree demo"
@@ -31,8 +33,11 @@ void trees_demo(void)
                                      "\nenter 5 for B-Tree demo"
                                      "\nenter 6 for B+ Tree demo"
                                      "\nenter 7 for Segment Tree demo"
+                                     "\nenter 8 for Fenwick Tree (BIT) demo"
+                                     "\nenter 9 for Splay Tree demo"
+                                     "\nenter 10 for Red-Black Tree demo"
                                      "\nenter choice : ",
-                                     1, 7);
+                                     1, 10);
 
         if (tree_status == INPUT_EXIT_SIGNAL)
         {
@@ -78,6 +83,21 @@ void trees_demo(void)
             case CHOICE_SEGMENT:
                 display_header("Segment Tree");
                 segment_tree_demo();
+                break;
+
+            case CHOICE_FENWICK:
+                display_header("Fenwick Tree (BIT)");
+                fenwick_tree_demo();
+                break;
+
+            case CHOICE_SPLAY:
+                display_header("Splay Tree");
+                splay_tree_demo();
+                break;
+
+            case CHOICE_RBT:
+                display_header("Red-Black Tree");
+                red_black_tree_demo();
                 break;
         }
     }
