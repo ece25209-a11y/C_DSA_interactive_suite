@@ -1,5 +1,5 @@
-#include "safe_input.h"
 #include "../help/help.h" // Include our new help module header
+#include "safe_input.h"
 #include <stdio.h>
 #include <string.h>
 

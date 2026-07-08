@@ -1,9 +1,9 @@
+#include "../help/help.h" // Include our help module header
 #include <stdio.h>
 #include <string.h>
-#include "../help/help.h" // Include our help module header
 
-// this function return 1 on successful insertion, 0 on failure (invalid input or EOF or number out of range)
-// and -111 on exit signal ie when user gives input as '-1'
+// this function return 1 on successful insertion, 0 on failure (invalid input or EOF or number out
+// of range) and -111 on exit signal ie when user gives input as '-1'
 int safe_input_int(int* input, const char* prompt, int min_val, int max_val)
 {
     int c;
@@ -72,12 +72,12 @@ int safe_input_int(int* input, const char* prompt, int min_val, int max_val)
 
 clear_buffer:
     while ((c = getchar()) != '\n' && c != EOF)
-        ; 
+        ;
     if (c == EOF)
-    { 
+    {
         clearerr(stdin);
         printf("input ended unexpectedly\n");
         return 0;
     }
-    return 0; 
+    return 0;
 }
