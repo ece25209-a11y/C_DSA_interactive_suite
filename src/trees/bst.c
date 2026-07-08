@@ -2,7 +2,7 @@
 #include "trees.h"
 #include <stdio.h>
 #include <stdlib.h>
-int deletionStrategy=1;
+int deletionStrategy = 1;
 #define SUCCESSOR 1
 #define PREDECESSOR 2
 
@@ -192,17 +192,19 @@ bstNode* bst_delete(bstNode* root, int value)
         }
         else
         {
-            if(deletionStrategy==SUCCESSOR){
+            if (deletionStrategy == SUCCESSOR)
+            {
                 bstNode* successor = root->right;
                 while (successor->left != NULL)
                     successor = successor->left;
                 root->data = successor->data;
                 root->right = bst_delete(root->right, successor->data);
             }
-            else if(deletionStrategy==PREDECESSOR){
+            else if (deletionStrategy == PREDECESSOR)
+            {
                 bstNode* predecessor = root->left;
                 while (predecessor->right != NULL)
-                    predecessor= predecessor->right;
+                    predecessor = predecessor->right;
                 root->data = predecessor->data;
                 root->left = bst_delete(root->left, predecessor->data);
             }
@@ -278,11 +280,12 @@ void binary_search_tree_demo(void)
             int bst_traversal_choice;
             int bst_traversal_status;
 
-            bst_traversal_status = safe_input_int(
-                &bst_traversal_choice,
-                "\nenter '1' for inorder, '2' for preorder and "
-                "'3' for postorder, '4' for level order, '5' to delete a node, '6' to change deletion strategy  and '-1' to exit: ",
-                1, 6);
+            bst_traversal_status =
+                safe_input_int(&bst_traversal_choice,
+                               "\nenter '1' for inorder, '2' for preorder and "
+                               "'3' for postorder, '4' for level order, '5' to delete a node, '6' "
+                               "to change deletion strategy  and '-1' to exit: ",
+                               1, 6);
 
             if (bst_traversal_status == INPUT_EXIT_SIGNAL)
             {
@@ -336,31 +339,29 @@ void binary_search_tree_demo(void)
                 bst_inorder(head);
                 printf("\n");
             }
-            else if (bst_traversal_choice == 6){
-                printf("DEBUG: Entered option 6\n");
+            else if (bst_traversal_choice == 6)
+            {
+
                 int strategy;
                 int strategy_status;
-                    strategy_status = safe_input_int(
-                         &strategy,
-                         "\nChoose deletion strategy:\n"
-                         "1. Inorder Successor\n"
-                        "2. Inorder Predecessor\n"
-                        "Enter choice: ",
-                        1, 2);
+                strategy_status = safe_input_int(&strategy,
+                                                 "\nChoose deletion strategy:\n"
+                                                 "1. Inorder Successor\n"
+                                                 "2. Inorder Predecessor\n"
+                                                 "Enter choice: ",
+                                                 1, 2);
 
-                    if (strategy_status == INPUT_EXIT_SIGNAL)
-                         continue;
+                if (strategy_status == INPUT_EXIT_SIGNAL)
+                    continue;
 
-                    if (strategy_status == 0)
-                         continue;
+                if (strategy_status == 0)
+                    continue;
 
-                    deletionStrategy = strategy;
-                    if (deletionStrategy == SUCCESSOR)
-                        printf("\nDeletion strategy set to Inorder Successor.\n");
-                    else
-                        printf("\nDeletion strategy set to Inorder Predecessor.\n");
-
-
+                deletionStrategy = strategy;
+                if (deletionStrategy == SUCCESSOR)
+                    printf("\nDeletion strategy set to Inorder Successor.\n");
+                else
+                    printf("\nDeletion strategy set to Inorder Predecessor.\n");
             }
         }
     }
